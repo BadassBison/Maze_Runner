@@ -1,9 +1,7 @@
 export default class Border {
     constructor() {
-        this.tl = {"x": 0, "y" : 0};
-        this.tr = {"x": innerWidth, "y" : 0};
-        this.br = {"x": innerWidth, "y" : innerHeight};
-        this.bl = {"x": 0, "y" : innerHeight};
+        this.width = Math.floor(innerWidth/100) * 100;
+        this.height = Math.floor(innerHeight/100) * 100;
         this.flex = [0.05, true];
     }
 
@@ -27,12 +25,13 @@ export default class Border {
                 this.flex[1] = true;
             }
         }
+
         window.ctx.lineWidth = 2;
         window.ctx.strokeStyle = "yellow";
-        window.ctx.strokeRect(10, 10, innerWidth - 20, innerHeight - 20)
+        window.ctx.strokeRect(10, 10, this.width - 20, this.height - 20)
         
         window.ctx.strokeStyle = window.gradient;
         window.ctx.lineWidth = 20;
-        window.ctx.strokeRect(0, 0, innerWidth, innerHeight);
+        window.ctx.strokeRect(0, 0, this.width, this.height);
     }
 }

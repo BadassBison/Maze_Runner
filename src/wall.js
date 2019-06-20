@@ -61,7 +61,5 @@ export default class Wall {
         window.ctx.moveTo(this.hitbox.p1R.x, this.hitbox.p1R.y);
         window.ctx.lineTo(this.hitbox.p2R.x, this.hitbox.p2R.y);
         window.ctx.stroke();
-
     }
-
 }

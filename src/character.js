@@ -21,6 +21,7 @@ export default class Character {
         this.direction = "stand";
         this.movements = [];
         this.spriteCycle = 0;
+        this.touching = 'none';
     }
 
     directionMove() {
@@ -121,22 +122,22 @@ export default class Character {
         this.movements.forEach(movement => {
             switch(movement){
                 case "ArrowDown":
-                    this.y = (this.y < canvas.height-95) ? this.y + this.speedY : this.y;
+                    this.y = (this.y < canvas.height-98) ? this.y + this.speedY : this.y;
                     this.sprite.srcY = 2 * this.sprite.height;
                     break;
             
                 case "ArrowRight":
-                    this.x = (this.x < canvas.width-77) ? this.x + this.speedX : this.x;
+                    this.x = (this.x < canvas.width-80) ? this.x + this.speedX : this.x;
                     this.sprite.srcY = 3 * this.sprite.height;
                     break;
                 
                 case "ArrowUp":
-                    this.y = (this.y > -5) ? this.y - this.speedY : this.y;
+                    this.y = (this.y > -4) ? this.y - this.speedY : this.y;
                     this.sprite.srcY = 0 * this.sprite.height;
                     break;
                 
                 case "ArrowLeft":
-                    this.x = (this.x > -12) ? this.x - this.speedX : this.x;
+                    this.x = (this.x > -10) ? this.x - this.speedX : this.x;
                     this.sprite.srcY = 1 * this.sprite.height;
                     break;
             }
