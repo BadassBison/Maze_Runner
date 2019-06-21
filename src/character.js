@@ -22,6 +22,7 @@ export default class Character {
         this.movements = [];
         this.spriteCycle = 0;
         this.touching = 'none';
+        this.playing = true;
         this.cash = 0;
     }
 
@@ -34,6 +35,7 @@ export default class Character {
     }
 
     show() {
+        if (this.cash === 1000) this.playing = false;
         this.spriteCycle++;
     
         if (this.direction !== "stand") {

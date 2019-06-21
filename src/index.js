@@ -24,7 +24,7 @@ window.rightBorder = false;
 window.bottomBorder = false;
 window.leftBorder = false;
 let money = [];
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 1; i++) {
     money.push(new Money());
 }
 let lightRadius = 2000;
@@ -41,11 +41,12 @@ const draw = () => {
     character.show();
 
     // Light area
-    // ctx.beginPath();
-    // ctx.arc(character.x + 43, character.y + 44, lightRadius, 0, 2 * Math.PI);
-    // ctx.rect(innerWidth, 0, -innerWidth, 800);
-    // ctx.fill();
-    // if (lightRadius > 120) lightRadius -= 10;
+    ctx.beginPath();
+    ctx.arc(character.x + 43, character.y + 44, lightRadius, 0, 2 * Math.PI);
+    ctx.rect(innerWidth, 0, -innerWidth, 800);
+    ctx.fill();
+    if (lightRadius > 120 && character.playing) lightRadius -= 10;
+    if (!character.playing && lightRadius < 2000) lightRadius += 10;
 
     // let pt = ray.cast(wall);
     // ray.lookAt(mouseX, mouseY);
