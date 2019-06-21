@@ -10,10 +10,10 @@ export default class Guy {
         this.width = this.sheetWidth / this.cols;
         this.height = (this.sheetHeight / this.rows) + 1;
         this.hitbox = {
-            x: 44.5,
-            y: 75,
-            width: 27,
-            height: 24,
+            x: 34,
+            y: 40,
+            width: 35,
+            height: 44,
             radius: 15
         }
         this.health = 100;
@@ -27,16 +27,8 @@ export default class Guy {
         this.srcX = this.currentFrame * this.width;
     }
 
-    hit() {
-        if (this.health > 0) this.health -= 2;
-        if (this.health < 2) this.health = 0;
-    }
-
-    heal() {
-        if (this.health > 0 && this.health < 100) this.health += 0.03;
-    }
-
-    fullHealth() {
-        this.health = 100;
+    updateHitbox(x, y) {
+        this.hitbox.x = x + 28;
+        this.hitbox.y = y + 42;
     }
 }

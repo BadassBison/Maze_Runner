@@ -1,5 +1,6 @@
 export default class Wall {
-    constructor(x1, y1, x2, y2) {
+    constructor(x1, y1, x2, y2, id) {
+        this.id = id;
         this.p1 = {"x": x1, "y": y1};
         this.p2 = {"x": x2, "y": y2};
         this.dy = (this.p2.y-this.p1.y);
@@ -28,18 +29,21 @@ export default class Wall {
         let p1Right = {"x": this.p1.x - dx, "y": this.p1.y - dy};
         let p2Left = {"x": this.p2.x + dx, "y": this.p2.y + dy};
         let p2Right = {"x": this.p2.x - dx, "y": this.p2.y - dy};
-        let vertical = this.p1.y === this.p2.y;
-        let width = vertical ? 20 : 100;
-        let height = vertical ? 100 : 20;
+        let vertical = this.p1.x === this.p2.x;
+        let hitX = vertical ? (p2Left.x - 19) : (p1Left.x - 9);
+        let hitY = vertical ? (p2Left.y - 9) : (p1Left.y - 18);
+        let width = vertical ? 19 : 118;
+        let height = vertical ? 117 : 19;
         this.hitbox = {
-            "x": p1Left.x-20,
-            "y": p1Left.y-20,
+            "x": hitX,
+            "y": hitY,
             "width": width,
             "height": height,
             "p1L": p1Left, 
             "p1R": p1Right, 
             "p2L": p2Left, 
-            "p2R": p2Right, 
+            "p2R": p2Right,
+            "vert": vertical 
         };
     }
 
