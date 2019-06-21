@@ -13,15 +13,22 @@ export default class Cell {
 
     show() {
         this.walls.forEach(wall => {
-            // let wallX = wall.hitbox.pl1.x;
-            // let width = wall.hitbox.
+            let wallX = wall.hitbox.x;
+            window.wallX = wallX;
+            let wallY = wall.hitbox.y;
+            let wallW = wall.hitbox.width;
+            let wallH = wall.hitbox.height;
+            let cX = window.character.sprite.hitbox.x;
+            let cY = window.character.sprite.hitbox.y;
+            let cW = window.character.sprite.hitbox.width;
+            let cH = window.character.sprite.hitbox.height;
             
-            // if (wall.hitbox.x < moneyBox.x + moneyBox.width &&
-            //     wall.hitbox.x + 20 > moneyBox.x &&
-            //     hitBox.y < moneyBox.y + moneyBox.height &&
-            //     hitBox.y + hitBox.height > moneyBox.y) {
-            //     noOverlap = false
-            // }
+            if (wallX < cX + cW &&
+                wallX + wallW > cX &&
+                wallY < cY + cH &&
+                wallY + wallH > cY) {
+                window.atBorder = true
+            }
             
             wall.show();
         });

@@ -28,7 +28,19 @@ export default class Wall {
         let p1Right = {"x": this.p1.x - dx, "y": this.p1.y - dy};
         let p2Left = {"x": this.p2.x + dx, "y": this.p2.y + dy};
         let p2Right = {"x": this.p2.x - dx, "y": this.p2.y - dy};
-        this.hitbox = {"p1L": p1Left, "p1R": p1Right, "p2L": p2Left, "p2R": p2Right};
+        let vertical = this.p1.y === this.p2.y;
+        let width = vertical ? 20 : 100;
+        let height = vertical ? 100 : 20;
+        this.hitbox = {
+            "x": p1Left.x-20,
+            "y": p1Left.y-20,
+            "width": width,
+            "height": height,
+            "p1L": p1Left, 
+            "p1R": p1Right, 
+            "p2L": p2Left, 
+            "p2R": p2Right, 
+        };
     }
 
     show() {

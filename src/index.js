@@ -22,6 +22,8 @@ ctx.lineCap = "round";
 const character = new Character("guy", 7, 2);
 window.character = character;
 let maze = new Maze();
+window.atBorder = false;
+let lightRadius = 2000;
 // let light = new Light(character.midX, character.midY);
 // let mouseX;
 // let mouseY;
@@ -35,9 +37,10 @@ const draw = () => {
 
     // Light area
     // ctx.beginPath();
-    // ctx.arc(character.x + 43, character.y + 44, 100, 0, 2 * Math.PI);
+    // ctx.arc(character.x + 43, character.y + 44, lightRadius, 0, 2 * Math.PI);
     // ctx.rect(innerWidth, 0, -innerWidth, 800);
     // ctx.fill();
+    // if (lightRadius > 120) lightRadius -= 10;
 
     // let pt = ray.cast(wall);
     // ray.lookAt(mouseX, mouseY);
