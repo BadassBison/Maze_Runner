@@ -22,6 +22,7 @@ export default class Character {
         this.movements = [];
         this.spriteCycle = 0;
         this.touching = 'none';
+        this.cash = 0;
     }
 
     directionMove() {
@@ -122,23 +123,27 @@ export default class Character {
         this.movements.forEach(movement => {
             switch(movement){
                 case "ArrowDown":
-                    this.y = (this.y < canvas.height-98) ? this.y + this.speedY : this.y;
+                    this.y = (this.y < canvas.height-98 && !window.bottomBorder) ? this.y + this.speedY : this.y;
                     this.sprite.srcY = 2 * this.sprite.height;
+                    this.sprite.updateHitbox(this.x, this.y);
                     break;
             
                 case "ArrowRight":
-                    this.x = (this.x < canvas.width-80) ? this.x + this.speedX : this.x;
+                    this.x = (this.x < canvas.width-80  && !window.rightBorder) ? this.x + this.speedX : this.x;
                     this.sprite.srcY = 3 * this.sprite.height;
+                    this.sprite.updateHitbox(this.x, this.y);
                     break;
                 
                 case "ArrowUp":
-                    this.y = (this.y > -4) ? this.y - this.speedY : this.y;
+                    this.y = (this.y > -20 && !window.topBorder) ? this.y - this.speedY : this.y;
                     this.sprite.srcY = 0 * this.sprite.height;
+                    this.sprite.updateHitbox(this.x, this.y);
                     break;
                 
                 case "ArrowLeft":
-                    this.x = (this.x > -10) ? this.x - this.speedX : this.x;
+                    this.x = (this.x > -10 && !window.leftBorder) ? this.x - this.speedX : this.x;
                     this.sprite.srcY = 1 * this.sprite.height;
+                    this.sprite.updateHitbox(this.x, this.y);
                     break;
             }
         })
@@ -166,13 +171,13 @@ export default class Character {
         
     }
 
-    // bump(dx, dy){
-    //     let val = setInterval(() => {
-    //         this.x += dx;
-    //         this.y += dy;
-    //     }, 50);
-    //     setTimeout(() => {
-    //         clearInterval(val);
-    //     }, 150);
-    // }     
+    bump(dx, dy){
+        this.x += dx;
+        this.y += dy;
+        this.sprite.updateHitbox(this.x, this.y);
+    }   
+    
+    addCash() {
+        this.cash += 1000;
+    }
 }

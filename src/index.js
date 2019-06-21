@@ -1,12 +1,9 @@
 import CanvasEl from './canvas.js';
 import Character from './character.js';
 import Maze from './maze.js';
-import Light from './light.js';
-import {
-        refresh,
-        rando, 
-        detectCollision
-} from './utils.js'
+import Money from './money.js';
+// import Light from './light.js';
+import { refresh } from './utils.js'
 
 // Canvas setup
 let width = Math.floor(innerWidth/100) * 100;
@@ -22,7 +19,14 @@ ctx.lineCap = "round";
 const character = new Character("guy", 7, 2);
 window.character = character;
 let maze = new Maze();
-window.atBorder = false;
+window.topBorder = false;
+window.rightBorder = false;
+window.bottomBorder = false;
+window.leftBorder = false;
+let money = [];
+for (let i = 0; i < 5; i++) {
+    money.push(new Money());
+}
 let lightRadius = 2000;
 // let light = new Light(character.midX, character.midY);
 // let mouseX;
@@ -33,6 +37,7 @@ const draw = () => {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, innerWidth, innerHeight);
     maze.show();
+    money.forEach(stack => stack.show());
     character.show();
 
     // Light area
@@ -46,7 +51,6 @@ const draw = () => {
     // ray.lookAt(mouseX, mouseY);
     // ray.updateSource(character.midX, character.midY);
     // ray.show();
-    // detectCollision(character, wall, spriteCycle);
     // light.show(wall, character);
     window.requestAnimationFrame(draw);
 }
